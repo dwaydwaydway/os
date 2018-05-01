@@ -15,7 +15,7 @@ void* prime(){
 		int i, j;
 		int q = 1;
 
-		for(i = 3; i < t; i++){
+		for(i = 3; i <= t; i++){
 			for(j = 0; j < q; j++){
 				if(i%map[j] == 0)
 					break;
