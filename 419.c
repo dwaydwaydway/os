@@ -4,35 +4,29 @@
 #include<pthread.h>
 int t;
 void* prime(){
-	if(t <= 0)
-		printf("Input error\n");
-	else if(t < 3)
+	if(t < 2)
 		printf("No result\n");
 	else if(t == 2)
 		printf("2");
 	else{
-		int *map = malloc(sizeof(int)*100);
-		int overflow = 95;
+		int *map = malloc(sizeof(int)*10);
+		int overflow = 8;
 		map[0] = 2;
-		int i, j, f;
+		int i, j;
 		int q = 1;
+
 		for(i = 3; i < t; i++){
-			f = 1;
 			for(j = 0; j < q; j++){
-				if(i%map[j] == 0){
-					f = 0;
+				if(i%map[j] == 0)
 					break;
+				if(j+1==q){
+					map[q] = i;
+					q++;
 				}
 			}
-			if(f){
-				map[q] = i;
-				q++;
-			}
-				
-
 			if(q > overflow){
 				int *temp = realloc(map,sizeof(int)*100);
-				if(!temp)
+				if(temp)
 					map = temp;
 				overflow += 100;
 			}
